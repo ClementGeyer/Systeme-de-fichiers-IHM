@@ -10,7 +10,7 @@ public class Client {
     /**
      * Default constructor
      */
-    public Client() throws IOException {
+    public Client(){
         Repertoire r1 = new Repertoire("rep1", Chemin.getRacine());
         Repertoire r2 = new Repertoire("rep2", r1);
         Fichier f1 = new Fichier("file1", r1, "ntm");
