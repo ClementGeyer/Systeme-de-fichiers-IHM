@@ -10,13 +10,14 @@ public class Client {
     /**
      * Default constructor
      */
-    public Client(){
-        Repertoire r1 = new Repertoire("rep1", Chemin.getRacine());
-        Repertoire r2 = new Repertoire("rep2", r1);
-        Fichier f1 = new Fichier("file1", r1, "ntm");
-        Fichier f2 = new Fichier("file2", r1, "test");
-        Fichier f3 = new Fichier("file3", r2, "pas d'inspi");
-        Fichier f4 = new Fichier("file4", r2, "oue oue oue");
+    public Client() throws Exception {
+        Fabrique.createFabrique();
+        Repertoire r1 = Fabrique.createRepository("rep1", Chemin.getRacine());
+        Repertoire r2 = Fabrique.createRepository("rep2", r1);
+        Fichier f1 = Fabrique.createFile("file1", r1, "ntm");
+        Fichier f2 = Fabrique.createFile("file2", r1, "test");
+        Fichier f3 = Fabrique.createFile("file3", r2, "pas d'inspi");
+        Fichier f4 = Fabrique.createFile("file4", r2, "oue oue oue");
         r1.addChild(f1);
         r1.addChild(f2);
         r2.addChild(f3);
@@ -24,13 +25,11 @@ public class Client {
         r1.addChild(r2);
         Chemin.getRacine().addChild(r1);
         Service s = new Service();
-        //s.serialisation(r2);
-        Chemin ch = s.deserialisation();
-        System.out.println(ch.getName());
+        System.out.println(s.getCheminsDesc(r2));
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         new Client();
     }
 }

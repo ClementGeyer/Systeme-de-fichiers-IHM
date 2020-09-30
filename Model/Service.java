@@ -33,31 +33,37 @@ public class Service {
      * @param chemin
      * @return ArrayList<String>
      */
-    public ArrayList<String> getCheminsDesc(Repertoire chemin){
-        ArrayList<String> lst_ch = new ArrayList<>();
-        ArrayList<Chemin> fileAttente = new ArrayList<>(chemin.getChilds());
-        ArrayList<Chemin> majFileAttente = new ArrayList<>(fileAttente);
-        while(fileAttente.size() > 0) {
-            for(Chemin ch : fileAttente){
-                if(ch instanceof Fichier){
-                    lst_ch.add(getChemin(ch));
-                    majFileAttente.remove(ch);
-                }
-                else{
-                    Repertoire rep = (Repertoire) ch;
-                    if(rep.getChilds().size() == 0){
+    public ArrayList<String> getCheminsDesc(Chemin chemin) throws Exception {
+        if(chemin instanceof Repertoire){
+            Repertoire r = (Repertoire) chemin;
+            ArrayList<String> lst_ch = new ArrayList<>();
+            ArrayList<Chemin> fileAttente = new ArrayList<>(r.getChilds());
+            ArrayList<Chemin> majFileAttente = new ArrayList<>(fileAttente);
+            while(fileAttente.size() > 0) {
+                for(Chemin ch : fileAttente){
+                    if(ch instanceof Fichier){
                         lst_ch.add(getChemin(ch));
-                        majFileAttente.remove(rep);
+                        majFileAttente.remove(ch);
                     }
                     else{
-                        majFileAttente.addAll(rep.getChilds());
-                        majFileAttente.remove(rep);
+                        Repertoire rep = (Repertoire) ch;
+                        if(rep.getChilds().size() == 0){
+                            lst_ch.add(getChemin(ch));
+                            majFileAttente.remove(rep);
+                        }
+                        else{
+                            majFileAttente.addAll(rep.getChilds());
+                            majFileAttente.remove(rep);
+                        }
                     }
                 }
+                fileAttente = new ArrayList<>(majFileAttente);
             }
-            fileAttente = new ArrayList<>(majFileAttente);
+            return lst_ch;
         }
-        return lst_ch;
+        else{
+            throw new Exception("Not a repository");
+        }
     }
 
     /**
@@ -66,7 +72,7 @@ public class Service {
      * @param name
      * @return ArrayList<String>
      */
-    public ArrayList<String> getCheminsDescByName(String name){
+    public ArrayList<String> getCheminsDescByName(String name) throws Exception {
         ArrayList<String> tree = getCheminsDesc(Chemin.getRacine());
         ArrayList<String> newTree = new ArrayList<>(tree);
         for(String str : tree){
@@ -80,35 +86,41 @@ public class Service {
     /**
      * Cette fonction permet d'obtenir la taille totale
      * d'un chemin donné comprenant toute l'arborescence sous ce chemin
-     * @param rep
+     * @param chemin
      * @return int
      */
-    public int repSize(Repertoire rep){
-        int size = rep.getSize();
-        ArrayList<Chemin> fileAttente = new ArrayList<>(rep.getChilds());
-        ArrayList<Chemin> newFileAttente = new ArrayList<>(rep.getChilds());
-        while(fileAttente.size() > 0){
-            for(Chemin ch : fileAttente){
-                if(ch instanceof Fichier){
-                    size += ch.getSize();
-                    newFileAttente.remove(ch);
-                }
-                else{
-                    Repertoire r = (Repertoire) ch;
-                    if(r.getChilds().size() == 0){
-                        size += r.getSize();
-                        newFileAttente.remove(r);
+    public int repSize(Chemin chemin) throws Exception {
+        if(chemin instanceof Repertoire){
+            Repertoire rep = (Repertoire) chemin;
+            int size = rep.getSize();
+            ArrayList<Chemin> fileAttente = new ArrayList<>(rep.getChilds());
+            ArrayList<Chemin> newFileAttente = new ArrayList<>(rep.getChilds());
+            while(fileAttente.size() > 0){
+                for(Chemin ch : fileAttente){
+                    if(ch instanceof Fichier){
+                        size += ch.getSize();
+                        newFileAttente.remove(ch);
                     }
                     else{
-                        size += r.getSize();
-                        newFileAttente.addAll(r.getChilds());
-                        newFileAttente.remove(r);
+                        Repertoire r = (Repertoire) ch;
+                        if(r.getChilds().size() == 0){
+                            size += r.getSize();
+                            newFileAttente.remove(r);
+                        }
+                        else{
+                            size += r.getSize();
+                            newFileAttente.addAll(r.getChilds());
+                            newFileAttente.remove(r);
+                        }
                     }
                 }
+                fileAttente = new ArrayList<>(newFileAttente);
             }
-            fileAttente = new ArrayList<>(newFileAttente);
+            return size;
         }
-        return size;
+        else{
+            throw new Exception("Not a repository");
+        }
     }
 
     /**
