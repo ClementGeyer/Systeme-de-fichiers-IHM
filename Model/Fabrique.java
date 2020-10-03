@@ -35,8 +35,10 @@ public class Fabrique {
      * @throws Exception
      */
     public static Fichier createFile(String name, Repertoire parent, String objet) throws Exception {
-        if(!name.isEmpty() && !objet.isEmpty()){
-            return new Fichier(name, parent, objet);
+        if(!name.isEmpty()){
+            Fichier f = new Fichier(name, parent, objet);
+            parent.addChild(f);
+            return f;
         }
         else{
             throw new Exception("Invalid arguments");
@@ -53,7 +55,9 @@ public class Fabrique {
      */
     public static Repertoire createRepository(String name, Repertoire parent) throws Exception {
         if(!name.isEmpty()){
-            return new Repertoire(name, parent);
+            Repertoire r = new Repertoire(name, parent);
+            parent.addChild(r);
+            return r;
         }
         else{
             throw new Exception("Invalid arguments");

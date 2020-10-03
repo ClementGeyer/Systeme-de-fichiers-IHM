@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Cette classe permet de créer un chemin, qui ensuite peut être instancier en fichier ou répertoire
@@ -66,6 +67,30 @@ public abstract class Chemin implements Serializable {
      */
     public Repertoire getParent() {
         return this.parent;
+    }
+
+    public void addChild(Chemin ch) throws Exception {
+        throw new Exception("Not a repository");
+    }
+
+    public void removeChild(Chemin ch) throws Exception{
+        throw new Exception("Not a repository");
+    }
+
+    public ArrayList<Chemin> getChilds() throws Exception {
+        throw new Exception("Not a repository");
+    }
+
+    public void setChilds(ArrayList<Chemin> childs) throws Exception{
+        throw new Exception("Not a repository");
+    }
+
+    public String getObjet() throws Exception{
+        throw new Exception("Not a file");
+    }
+
+    public void setObjet(String objet) throws Exception{
+        throw new Exception("Not a file");
     }
 
     /**

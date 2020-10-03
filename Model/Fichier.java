@@ -26,6 +26,7 @@ public class Fichier extends Chemin {
      * Permet d'obtenir l'objet contenu dans le fichier
      * @return String
      */
+    @Override
     public String getObjet() {
         return this.objet;
     }
@@ -34,6 +35,7 @@ public class Fichier extends Chemin {
      * Permet de définir un objet au fichier
      * @param objet
      */
+    @Override
     public void setObjet(String objet) {
         this.objet = objet;
     }
@@ -42,6 +44,7 @@ public class Fichier extends Chemin {
      * Permet d'obtenir la taille de l'objet
      * @return int
      */
+    @Override
     public int getSize(){
         return this.objet.length();
     }

@@ -40,6 +40,7 @@ public class Repertoire extends Chemin {
      * Permet d'ajouter un enfant a la liste d'enfants du répertoire
      * @param ch
      */
+    @Override
     public void addChild(Chemin ch) {
         childs.add(ch);
     }
@@ -48,6 +49,7 @@ public class Repertoire extends Chemin {
      * Permet de supprimer un enfant de la liste d'enfants du répertoire
      * @param ch
      */
+    @Override
     public void removeChild(Chemin ch) {
         childs.remove(ch);
     }
@@ -56,6 +58,7 @@ public class Repertoire extends Chemin {
      * Permet d'obtenir la liste des enfants du répertoire
      * @return ArrayList<Chemin>
      */
+    @Override
     public ArrayList<Chemin> getChilds() {
         return this.childs;
     }
@@ -64,6 +67,7 @@ public class Repertoire extends Chemin {
      * Permet de définir une liste d'enfants sur un répertoire
      * @param childs
      */
+    @Override
     public void setChilds(ArrayList<Chemin> childs) {
         this.childs = childs;
     }
@@ -72,6 +76,7 @@ public class Repertoire extends Chemin {
      * Permet d'obtenir la taille d'un répertoire
      * @return int
      */
+    @Override
     public int getSize() {
         return this.size;
     }
