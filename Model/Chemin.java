@@ -69,26 +69,56 @@ public abstract class Chemin implements Serializable {
         return this.parent;
     }
 
+    /**
+     * Lance une exception si la méthode n'est pas redéfinie
+     * @param ch
+     * @throws Exception
+     */
     public void addChild(Chemin ch) throws Exception {
         throw new Exception("Not a repository");
     }
 
+    /**
+     * Lance une exception si la méthode n'est pas redéfinie
+     * @param ch
+     * @throws Exception
+     */
     public void removeChild(Chemin ch) throws Exception{
         throw new Exception("Not a repository");
     }
 
+    /**
+     * Lance une exception si la méthode n'est pas redéfinie
+     * @return ArrayList<Chemin>
+     * @throws Exception
+     */
     public ArrayList<Chemin> getChilds() throws Exception {
         throw new Exception("Not a repository");
     }
 
+    /**
+     * Lance une exception si la méthode n'est pas redéfinie
+     * @param childs
+     * @throws Exception
+     */
     public void setChilds(ArrayList<Chemin> childs) throws Exception{
         throw new Exception("Not a repository");
     }
 
+    /**
+     * Lance une exception si la méthode n'est pas redéfinie
+     * @return String
+     * @throws Exception
+     */
     public String getObjet() throws Exception{
         throw new Exception("Not a file");
     }
 
+    /**
+     * Lance une exception si la méthode n'est pas redéfinie
+     * @param objet
+     * @throws Exception
+     */
     public void setObjet(String objet) throws Exception{
         throw new Exception("Not a file");
     }
