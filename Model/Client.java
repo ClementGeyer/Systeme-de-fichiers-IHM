@@ -26,6 +26,8 @@ public class Client {
         Chemin.getRacine().addChild(r1);
         Service s = new Service();
         System.out.println(s.getCheminsDesc(r2));
+        Component c = new Component();
+        View v = new View(c);
     }
 
 
