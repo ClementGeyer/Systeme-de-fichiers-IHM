@@ -1,3 +1,8 @@
+package Controller;
+
+import Modele.Fichier;
+import Modele.Repertoire;
+
 /**
  * Cette classe permet de créer des chemins (fichiers ou répertoires),
  * elle utilise le modèle Singleton
@@ -11,12 +16,12 @@ public class Fabrique {
     private static Fabrique fab;
 
     /**
-     * Constructeur de la classe Fabrique
+     * Constructeur de la classe Controller.Fabrique
      */
     private Fabrique(){}
 
     /**
-     * Cette fonction permet de créer une (et une seule) instance de la classe Fabrique
+     * Cette fonction permet de créer une (et une seule) instance de la classe Controller.Fabrique
      * en respectant le principe du modèle Singleton
      */
     public static void createFabrique(){
@@ -31,7 +36,7 @@ public class Fabrique {
      * @param name
      * @param parent
      * @param objet
-     * @return Fichier
+     * @return Modele.Fichier
      * @throws Exception
      */
     public static Fichier createFile(String name, Repertoire parent, String objet) throws Exception {
@@ -50,7 +55,7 @@ public class Fabrique {
      * et en vérifiant que ceux-ci sont valides, sinon une exception sera levée
      * @param name
      * @param parent
-     * @return Repertoire
+     * @return Modele.Repertoire
      * @throws Exception
      */
     public static Repertoire createRepository(String name, Repertoire parent) throws Exception {

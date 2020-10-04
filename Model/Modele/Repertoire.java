@@ -1,7 +1,9 @@
+package Modele;
+
 import java.util.*;
 
 /**
- * Cette classe est une classe fille de la classe Chemin, elle permet de définir un Chemin en tant que Répertoire
+ * Cette classe est une classe fille de la classe Modele.Chemin, elle permet de définir un Modele.Chemin en tant que Répertoire
  * @author Clément GEYER
  */
 public class Repertoire extends Chemin {
@@ -56,7 +58,7 @@ public class Repertoire extends Chemin {
 
     /**
      * Permet d'obtenir la liste des enfants du répertoire
-     * @return ArrayList<Chemin>
+     * @return ArrayList<Modele.Chemin>
      */
     @Override
     public ArrayList<Chemin> getChilds() {

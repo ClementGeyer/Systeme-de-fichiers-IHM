@@ -1,3 +1,7 @@
+package Controller;
+
+import Modele.*;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -8,7 +12,7 @@ import java.util.ArrayList;
 public class Service {
 
     /**
-     * Constructeur de la classe Service
+     * Constructeur de la classe Controller.Service
      */
     public Service(){}
 
@@ -29,7 +33,7 @@ public class Service {
 
     /**
      * Cette fonction permet d'obtenir tous les chemins descendants
-     * du Chemin donné en paramètre sous la forme d'une liste
+     * du Modele.Chemin donné en paramètre sous la forme d'une liste
      * @param chemin
      * @return ArrayList<String>
      */
@@ -124,13 +128,13 @@ public class Service {
     }
 
     /**
-     * Cette fonction permet d'enregistrer un Chemin dans un fichier texte
+     * Cette fonction permet d'enregistrer un Modele.Chemin dans un fichier texte
      * @param ch
      */
     public void serialisation(Chemin ch){
         try {
             // Ouverture d'un flux en écriture vers un fichier
-            FileOutputStream fos = new FileOutputStream("Chemin.txt");
+            FileOutputStream fos = new FileOutputStream("Modele/Chemin.txt");
             // Création d'un flux de sérialisation
             ObjectOutputStream os = new ObjectOutputStream(fos);
             os.writeObject(ch);
@@ -143,12 +147,12 @@ public class Service {
 
     /**
      * Cette fonction permet de lire les données précedemment enregistrer dans un fichier texte
-     * @return Chemin
+     * @return Modele.Chemin
      */
     public Chemin deserialisation(){
         Chemin ch = null;
         try{
-            FileInputStream fis = new FileInputStream("Chemin.txt");
+            FileInputStream fis = new FileInputStream("Modele/Chemin.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
             ch = (Chemin) ois.readObject();
             ois.close();

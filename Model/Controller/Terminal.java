@@ -1,3 +1,10 @@
+package Controller;
+
+import Controller.Fabrique;
+import Modele.Chemin;
+import Modele.Fichier;
+import Modele.Repertoire;
+
 /**
  * Cette classe permet d'effectuer des fonctions disponibles dans un terminal unix sur les objets du système de fichier
  * @author Clément GEYER
@@ -11,7 +18,7 @@ public class Terminal {
     private Repertoire pwd;
 
     /**
-     * Constructeur de la classe Terminal en lui passant la racine en paramètre
+     * Constructeur de la classe Controller.Terminal en lui passant la racine en paramètre
      * @param racine
      */
     public Terminal(Repertoire racine){

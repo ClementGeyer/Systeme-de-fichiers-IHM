@@ -1,5 +1,7 @@
+package Modele;
+
 /**
- * Cette classe est une classe fille de la classe Chemin, elle permet de définir un Chemin en tant que Fichier
+ * Cette classe est une classe fille de la classe Modele.Chemin, elle permet de définir un Modele.Chemin en tant que Modele.Fichier
  * @author Clément GEYER
  */
 public class Fichier extends Chemin {

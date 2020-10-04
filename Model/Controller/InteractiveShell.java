@@ -1,3 +1,5 @@
+package Controller;
+
 import java.io.Console;
 import java.util.List;
 
@@ -13,14 +15,14 @@ public class InteractiveShell {
         try (JShell jsh = JShell.create()) {
 
             // imports (à completer)
-            jsh.eval("import Terminal;");
-            jsh.eval("import Chemin;");
+            jsh.eval("import Controller.Terminal;");
+            jsh.eval("import Modele.Chemin;");
 
             // Creation de la racine du systeme de fichiers
-            jsh.eval( "Repertoire root = Chemin.getRacine();" );
+            jsh.eval( "Modele.Repertoire root = Modele.Chemin.getRacine();" );
 
             // Creation d'un terminal
-            jsh.eval( "Terminal t = new Terminal( root );" );
+            jsh.eval( "Controller.Terminal t = new Controller.Terminal( root );" );
 
             // Creation d'une vue ?
 

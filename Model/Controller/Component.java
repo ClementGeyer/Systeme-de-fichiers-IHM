@@ -1,3 +1,9 @@
+package Controller;
+
+import Modele.Chemin;
+import Modele.Fichier;
+import Modele.Repertoire;
+
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -9,13 +15,13 @@ import javax.swing.tree.TreePath;
 public class Component implements TreeModel {
 
     /**
-     * Constructeur de la classe Component
+     * Constructeur de la classe Controller.Component
      */
     public Component(){}
 
     /**
      * Permet d'obtenir la racine du système de fichiers
-     * @return
+     * @return Modele.Chemin
      */
     @Override
     public Chemin getRoot() {
@@ -26,7 +32,7 @@ public class Component implements TreeModel {
      * Permet de récupérer un chemin enfant par recherche dans la liste d'enfants du parent
      * @param parent
      * @param index
-     * @return Chemin
+     * @return Modele.Chemin
      */
     @Override
     public Chemin getChild(Object parent, int index){

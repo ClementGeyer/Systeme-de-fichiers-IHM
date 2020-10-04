@@ -1,3 +1,5 @@
+package Modele;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -63,7 +65,7 @@ public abstract class Chemin implements Serializable {
 
     /**
      * Permet d'obtenir le répertoire parent du chemin
-     * @return Repertoire
+     * @return Modele.Repertoire
      */
     public Repertoire getParent() {
         return this.parent;
@@ -89,7 +91,7 @@ public abstract class Chemin implements Serializable {
 
     /**
      * Lance une exception si la méthode n'est pas redéfinie
-     * @return ArrayList<Chemin>
+     * @return ArrayList<Modele.Chemin>
      * @throws Exception
      */
     public ArrayList<Chemin> getChilds() throws Exception {
@@ -125,7 +127,7 @@ public abstract class Chemin implements Serializable {
 
     /**
      * Permet d'obtenir le racine du système de fichier
-     * @return Repertoire
+     * @return Modele.Repertoire
      */
     public static Repertoire getRacine() {
         return racine;
