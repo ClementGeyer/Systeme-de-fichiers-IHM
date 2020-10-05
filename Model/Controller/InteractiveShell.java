@@ -3,6 +3,8 @@ package Controller;
 import java.io.Console;
 import java.util.List;
 
+import Modele.Chemin;
+import Vue.View;
 import jdk.jshell.JShell;
 import jdk.jshell.SnippetEvent;
 
@@ -25,6 +27,7 @@ public class InteractiveShell {
             jsh.eval( "Controller.Terminal t = new Controller.Terminal( root );" );
 
             // Creation d'une vue ?
+            View fenetre = new View(Chemin.getRacine());
 
             // Boucle infinie d'évaluations
             do {
@@ -62,7 +65,8 @@ public class InteractiveShell {
                 }
 
                 // Mise a jour de la vue ?
-
+                fenetre.getContentPane().remove(0);
+                fenetre = new View(Chemin.getRacine());
 
             } while (true);
 

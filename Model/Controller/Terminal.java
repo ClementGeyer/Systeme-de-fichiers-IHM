@@ -1,9 +1,6 @@
 package Controller;
 
-import Controller.Fabrique;
-import Modele.Chemin;
-import Modele.Fichier;
-import Modele.Repertoire;
+import Modele.*;
 
 /**
  * Cette classe permet d'effectuer des fonctions disponibles dans un terminal unix sur les objets du système de fichier
@@ -21,25 +18,32 @@ public class Terminal {
      * Constructeur de la classe Controller.Terminal en lui passant la racine en paramètre
      * @param racine
      */
-    public Terminal(Repertoire racine){
-        this.pwd = racine;
+    public Terminal(Chemin racine){
+        if(racine instanceof Fichier) {
+            throw new IllegalArgumentException("Not a repository");
+        }
+        this.pwd = (Repertoire) racine;
     }
 
     /**
      * Cette fonction permet de créer un fichier avec un nom défini
      * @param fileName
-     * @throws Exception
      */
-    public void touch(String fileName) throws Exception {
+    public void touch(String fileName){
+        if(fileName == null || fileName.isEmpty()){
+            throw new IllegalArgumentException("Illegal argument");
+        }
         Fabrique.createFile(fileName, pwd, "");
     }
 
     /**
      * Cette fonction permet de créer un répertoire avec un nom défini
      * @param repositoryName
-     * @throws Exception
      */
-    public void mkdir(String repositoryName) throws Exception {
+    public void mkdir(String repositoryName){
+        if(repositoryName == null || repositoryName.isEmpty()) {
+            throw new IllegalArgumentException("Illegal argument");
+        }
         Fabrique.createRepository(repositoryName, pwd);
     }
 
@@ -48,8 +52,9 @@ public class Terminal {
      */
     public void ls(){
         for(Chemin childs : pwd.getChilds()){
-            System.out.print(childs + "   ");
+            System.out.print(childs.getName() + "   ");
         }
+        System.out.println();
     }
 
     /**
@@ -63,14 +68,16 @@ public class Terminal {
      * Cette fonction permet d'accéder au répertoire parent ou un des enfants
      */
     public void cd(String name){
+        if(name == null || name.isEmpty()){
+            throw new IllegalArgumentException("Illegal argument");
+        }
         if(name.equals("..")){
             pwd = pwd.getParent();
         }
         else{
             for(Chemin childs : pwd.getChilds()){
                 if(childs.getName().equals(name) && childs instanceof Repertoire){
-                    Repertoire newPwd = (Repertoire) childs;
-                    pwd = newPwd;
+                    pwd = (Repertoire) childs;
                 }
             }
         }
@@ -81,6 +88,9 @@ public class Terminal {
      * @param fileName
      */
     public void rm(String fileName){
+        if(fileName == null || fileName.isEmpty()){
+            throw new IllegalArgumentException("Illegal argument");
+        }
         for(Chemin childs : pwd.getChilds()){
             if (childs instanceof Fichier){
                 Fichier file = (Fichier) childs;
@@ -96,6 +106,9 @@ public class Terminal {
      * @param repositoryName
      */
     public void rmdir(String repositoryName){
+        if(repositoryName == null || repositoryName.isEmpty()){
+            throw new IllegalArgumentException("Illegal argument");
+        }
         for(Chemin childs : pwd.getChilds()){
             if (childs instanceof Repertoire){
                 Repertoire repository = (Repertoire) childs;
@@ -112,23 +125,12 @@ public class Terminal {
      * @param newName
      */
     public void mv(String oldName, String newName){
-        String[] chemin = newName.split("/");
-        Fichier oldFile = null;
-        for(Chemin childs : pwd.getChilds()){
-            if(childs.getName().equals(oldName) && childs instanceof Fichier){
-                oldFile = (Fichier) childs;
-                pwd.removeChild(childs);
-            }
+        if(oldName == null || oldName.isEmpty() || newName == null || newName.isEmpty()){
+            throw new IllegalArgumentException("Illegal argument");
         }
-        for (int i = 0;i<chemin.length;i++){
-            for(Chemin childs : pwd.getChilds()){
-                if(childs.getName().equals(chemin[i]) && childs instanceof Repertoire && i < chemin.length){
-                    cd(chemin[i]);
-                }
-                if(i == chemin.length && oldFile != null){
-                    pwd.addChild(oldFile);
-                    oldFile.setParent(pwd);
-                }
+        for(Chemin childs : pwd.getChilds()){
+            if(childs.getName().equals(oldName)){
+                childs.setName(newName);
             }
         }
     }

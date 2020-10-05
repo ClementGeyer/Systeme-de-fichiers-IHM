@@ -1,7 +1,6 @@
 package Vue;
 
-import Controller.*;
-
+import Modele.Chemin;
 import javax.swing.*;
 
 /**
@@ -10,11 +9,8 @@ import javax.swing.*;
  */
 public class View extends JFrame{
 
-    private Component component;
-
-    public View(Component c){
-        this.component = c;
-        add(new JTree(this.component));
+    public View(Chemin c){
+        add(new JTree(c));
         setTitle("Système de fichier");
         setSize( 500,400 );
         setLocation(200,200);

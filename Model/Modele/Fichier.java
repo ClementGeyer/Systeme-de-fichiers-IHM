@@ -1,5 +1,8 @@
 package Modele;
 
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreePath;
+
 /**
  * Cette classe est une classe fille de la classe Modele.Chemin, elle permet de définir un Modele.Chemin en tant que Modele.Fichier
  * @author Clément GEYER

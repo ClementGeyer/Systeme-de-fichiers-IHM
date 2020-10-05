@@ -1,7 +1,6 @@
 package Controller;
 
-import Modele.Fichier;
-import Modele.Repertoire;
+import Modele.*;
 
 /**
  * Cette classe permet de créer des chemins (fichiers ou répertoires),
@@ -37,17 +36,14 @@ public class Fabrique {
      * @param parent
      * @param objet
      * @return Modele.Fichier
-     * @throws Exception
      */
-    public static Fichier createFile(String name, Repertoire parent, String objet) throws Exception {
-        if(!name.isEmpty()){
-            Fichier f = new Fichier(name, parent, objet);
-            parent.addChild(f);
-            return f;
+    public static Fichier createFile(String name, Repertoire parent, String objet){
+        if(name == null || name.isEmpty() || parent == null || objet == null){
+            throw new IllegalArgumentException("Illegal arguments");
         }
-        else{
-            throw new Exception("Invalid arguments");
-        }
+        Fichier f = new Fichier(name, parent, objet);
+        parent.addChild(f);
+        return f;
     }
 
     /**
@@ -56,16 +52,13 @@ public class Fabrique {
      * @param name
      * @param parent
      * @return Modele.Repertoire
-     * @throws Exception
      */
-    public static Repertoire createRepository(String name, Repertoire parent) throws Exception {
-        if(!name.isEmpty()){
-            Repertoire r = new Repertoire(name, parent);
-            parent.addChild(r);
-            return r;
+    public static Repertoire createRepository(String name, Repertoire parent){
+        if(name == null || name.isEmpty() || parent == null){
+            throw new IllegalArgumentException("Illegal arguments");
         }
-        else{
-            throw new Exception("Invalid arguments");
-        }
+        Repertoire r = new Repertoire(name, parent);
+        parent.addChild(r);
+        return r;
     }
 }
