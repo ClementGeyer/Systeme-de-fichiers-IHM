@@ -8,10 +8,6 @@ import Modele.*;
  * @author Clément GEYER
  */
 public class Fabrique {
-
-    /**
-     * @param fab
-     */
     private static Fabrique fab;
 
     /**
@@ -23,21 +19,22 @@ public class Fabrique {
      * Cette fonction permet de créer une (et une seule) instance de la classe Controller.Fabrique
      * en respectant le principe du modèle Singleton
      */
-    public static void createFabrique(){
+    public static Fabrique getInstance(){
         if(fab == null){
             fab = new Fabrique();
         }
+        return fab;
     }
 
     /**
      * Cette fonction permet de créer un fichier en lui passant tous les paramètres nécessaires
      * et en vérifiant que ceux-ci sont valides, sinon une exception sera levée
-     * @param name
-     * @param parent
-     * @param objet
+     * @param name nom du fichier
+     * @param parent parent du fichier
+     * @param objet objet du fichier
      * @return Modele.Fichier
      */
-    public static Fichier createFile(String name, Repertoire parent, String objet){
+    public Fichier createFile(String name, Repertoire parent, String objet){
         if(name == null || name.isEmpty() || parent == null || objet == null){
             throw new IllegalArgumentException("Illegal arguments");
         }
@@ -49,11 +46,11 @@ public class Fabrique {
     /**
      * Cette fonction permet de créer un répertoire en lui passant tous les paramètres nécessaires
      * et en vérifiant que ceux-ci sont valides, sinon une exception sera levée
-     * @param name
-     * @param parent
+     * @param name nom du répertoire
+     * @param parent parent du répertoire
      * @return Modele.Repertoire
      */
-    public static Repertoire createRepository(String name, Repertoire parent){
+    public Repertoire createRepository(String name, Repertoire parent){
         if(name == null || name.isEmpty() || parent == null){
             throw new IllegalArgumentException("Illegal arguments");
         }

@@ -27,9 +27,9 @@ public class Client {
      * Cette fonction sert à créer toutes les instances de controlleurs
      */
     public void createControllers(){
-        Fabrique.createFabrique();
+        Fabrique.getInstance();
         service = new Service();
-        vue = new View(Chemin.getRacine());
+        //vue = new View(Chemin.getRacine());
         terminal = new Terminal(Chemin.getRacine());
     }
 
@@ -37,12 +37,12 @@ public class Client {
      * Cette fonction permet de créer une arborescence servant à tester le système de fichiers
      */
     public void createArborescence(){
-        r1 = Fabrique.createRepository("rep1", Chemin.getRacine());
-        r2 = Fabrique.createRepository("rep2", r1);
-        f1 = Fabrique.createFile("file1", r1, "ntm");
-        f2 = Fabrique.createFile("file2", r1, "test");
-        f3 = Fabrique.createFile("file3", r2, "pas d'inspi");
-        f4 = Fabrique.createFile("file4", r2, "oue oue oue");
+        r1 = Fabrique.getInstance().createRepository("rep1", Chemin.getRacine());
+        r2 = Fabrique.getInstance().createRepository("rep2", r1);
+        f1 = Fabrique.getInstance().createFile("file1", r1, "ntm");
+        f2 = Fabrique.getInstance().createFile("file2", r1, "test");
+        f3 = Fabrique.getInstance().createFile("file3", r2, "pas d'inspi");
+        f4 = Fabrique.getInstance().createFile("file4", r2, "oue oue oue");
     }
 
     /**

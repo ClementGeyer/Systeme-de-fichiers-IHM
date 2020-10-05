@@ -17,8 +17,9 @@ public class InteractiveShell {
         try (JShell jsh = JShell.create()) {
 
             // imports (à completer)
-            jsh.eval("import Controller.Terminal;");
-            jsh.eval("import Modele.Chemin;");
+            jsh.eval("import Controller.*;");
+            jsh.eval("import Modele.*;");
+            jsh.eval("import Vue.*;");
 
             // Creation de la racine du systeme de fichiers
             jsh.eval( "Modele.Repertoire root = Modele.Chemin.getRacine();" );
@@ -27,7 +28,7 @@ public class InteractiveShell {
             jsh.eval( "Controller.Terminal t = new Controller.Terminal( root );" );
 
             // Creation d'une vue ?
-            View fenetre = new View(Chemin.getRacine());
+            jsh.eval( "View fenetre = new View(root);");
 
             // Boucle infinie d'évaluations
             do {
@@ -65,8 +66,8 @@ public class InteractiveShell {
                 }
 
                 // Mise a jour de la vue ?
-                fenetre.getContentPane().remove(0);
-                fenetre = new View(Chemin.getRacine());
+                jsh.eval("fenetre.getContentPane().remove(0);");
+                jsh.eval("fenetre.addJTree(root);");
 
             } while (true);
 

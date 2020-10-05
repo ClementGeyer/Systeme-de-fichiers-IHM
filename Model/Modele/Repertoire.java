@@ -8,22 +8,12 @@ import java.util.*;
  */
 public class Repertoire extends Chemin {
 
-    /**
-     * Liste d'enfants du répertoire
-     * @param childs
-     */
-    private ArrayList<Chemin> childs = new ArrayList();
-
-    /**
-     * Taille du répertoire
-     * @param size
-     */
-    private final int size = 4096;
+    private ArrayList<Chemin> childs = new ArrayList<>();
 
     /**
      * Constructeur du fichier prenant en compte un nom et un parent
-     * @param name
-     * @param parent
+     * @param name nom du répertoire
+     * @param parent parent du répertoire
      */
     public Repertoire(String name, Repertoire parent) {
         this.setName(name);
@@ -32,7 +22,7 @@ public class Repertoire extends Chemin {
 
     /**
      * Surcharge du constructeur permettant de créer le répertoire racine sans ajouter de parent
-     * @param name
+     * @param name nom à définir
      */
     public Repertoire(String name){
         this.setName(name);
@@ -40,7 +30,7 @@ public class Repertoire extends Chemin {
 
     /**
      * Permet d'ajouter un enfant a la liste d'enfants du répertoire
-     * @param ch
+     * @param ch Chemin enfant à ajouter au répertoire
      */
     @Override
     public void addChild(Chemin ch) {
@@ -49,7 +39,7 @@ public class Repertoire extends Chemin {
 
     /**
      * Permet de supprimer un enfant de la liste d'enfants du répertoire
-     * @param ch
+     * @param ch Chemin enfant à supprimer au répertoire
      */
     @Override
     public void removeChild(Chemin ch) {
@@ -67,7 +57,7 @@ public class Repertoire extends Chemin {
 
     /**
      * Permet de définir une liste d'enfants sur un répertoire
-     * @param childs
+     * @param childs Liste d'enfants à définir au répertoire
      */
     @Override
     public void setChilds(ArrayList<Chemin> childs) {
@@ -80,6 +70,6 @@ public class Repertoire extends Chemin {
      */
     @Override
     public int getSize() {
-        return this.size;
+        return 4096;
     }
 }

@@ -12,25 +12,8 @@ import java.util.ArrayList;
  */
 public abstract class Chemin implements Serializable, TreeModel {
 
-    /**
-     * Nom du chemin
-     *
-     * @param name
-     */
     private String name;
-
-    /**
-     * Répertoire parent
-     *
-     * @param parent
-     */
     private Repertoire parent;
-
-    /**
-     * Racine du système de fichier : static
-     *
-     * @param racine
-     */
     private static final Repertoire racine = new Repertoire("/");
 
     /**
@@ -43,13 +26,11 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Permet de définir un parent au chemin
      *
-     * @param parent
+     * @param parent parent du Chemin
      */
     public void setParent(Repertoire parent) {
         this.parent = parent;
     }
-
-    ;
 
     /**
      * Permet d'obtenir le nom du chemin
@@ -60,18 +41,14 @@ public abstract class Chemin implements Serializable, TreeModel {
         return this.name;
     }
 
-    ;
-
     /**
      * Permet de définir le nom du chemin
      *
-     * @param name
+     * @param name nom du Chemin
      */
     public void setName(String name) {
         this.name = name;
     }
-
-    ;
 
     /**
      * Permet d'obtenir le répertoire parent du chemin
@@ -85,8 +62,8 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Lance une exception si la méthode n'est pas redéfinie
      *
-     * @param ch
-     * @throws IllegalArgumentException
+     * @param ch Chemin à ajouter en enfant
+     * @throws IllegalArgumentException le Chemin n'est pas un répertoire
      */
     public void addChild(Chemin ch) throws IllegalArgumentException {
         throw new IllegalArgumentException("Not a repository");
@@ -95,8 +72,8 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Lance une exception si la méthode n'est pas redéfinie
      *
-     * @param ch
-     * @throws IllegalArgumentException
+     * @param ch Chemin à enlever en enfant
+     * @throws IllegalArgumentException le Chemin n'est pas un répertoire
      */
     public void removeChild(Chemin ch) throws IllegalArgumentException {
         throw new IllegalArgumentException("Not a repository");
@@ -106,7 +83,7 @@ public abstract class Chemin implements Serializable, TreeModel {
      * Lance une exception si la méthode n'est pas redéfinie
      *
      * @return ArrayList<Modele.Chemin>
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException le Chemin n'est pas un répertoire
      */
     public ArrayList<Chemin> getChilds() throws IllegalArgumentException {
         throw new IllegalArgumentException("Not a repository");
@@ -115,8 +92,8 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Lance une exception si la méthode n'est pas redéfinie
      *
-     * @param childs
-     * @throws IllegalArgumentException
+     * @param childs liste d'enfants
+     * @throws IllegalArgumentException le Chemin n'est pas un répertoire
      */
     public void setChilds(ArrayList<Chemin> childs) throws IllegalArgumentException {
         throw new IllegalArgumentException("Not a repository");
@@ -126,7 +103,7 @@ public abstract class Chemin implements Serializable, TreeModel {
      * Lance une exception si la méthode n'est pas redéfinie
      *
      * @return String
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException le Chemin n'est pas un fichier
      */
     public String getObjet() throws IllegalArgumentException {
         throw new IllegalArgumentException("Not a file");
@@ -135,8 +112,8 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Lance une exception si la méthode n'est pas redéfinie
      *
-     * @param objet
-     * @throws IllegalArgumentException
+     * @param objet objet contenu dans un fichier
+     * @throws IllegalArgumentException le Chemin n'est pas un fichier
      */
     public void setObjet(String objet) throws IllegalArgumentException {
         throw new IllegalArgumentException("Not a file");
@@ -154,15 +131,11 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Permet de savoir si le chemin passé en paramètre est la racine du système de fichier
      *
-     * @param ch
+     * @param ch Chemin à vérifier
      * @return boolean
      */
     public static boolean isRacine(Chemin ch) {
-        if (ch.getName().equals("/")) {
-            return true;
-        } else {
-            return false;
-        }
+        return ch.getName().equals("/");
     }
 
     /**
@@ -178,8 +151,8 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Permet de récupérer un chemin enfant par recherche dans la liste d'enfants du parent
      *
-     * @param parent
-     * @param index
+     * @param parent parent du Chemin
+     * @param index index dans la liste d'enfants du parent
      * @return Modele.Chemin
      */
     @Override
@@ -194,7 +167,7 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Permet d'obtenir le nombre d'enfants d'un répertoire parent
      *
-     * @param parent
+     * @param parent parent du Chemin
      * @return int
      */
     @Override
@@ -207,9 +180,9 @@ public abstract class Chemin implements Serializable, TreeModel {
     }
 
     /**
-     * Permet de savoir si l'objet passé en paramètre est un fichier
+     * Permet de savoir si l'objet passé en paramètre est une feuille (fichier ou répertoire sans enfants)
      *
-     * @param node
+     * @param node objet à vérifier en tant que feuille
      * @return boolean
      */
     @Override
@@ -220,8 +193,8 @@ public abstract class Chemin implements Serializable, TreeModel {
     /**
      * Permet de savoir quel est l'index de l'enfant passé en paramètre dans la liste du parent
      *
-     * @param parent
-     * @param child
+     * @param parent Chemin parent
+     * @param child enfant à vérifier
      * @return int
      */
     @Override
@@ -231,6 +204,16 @@ public abstract class Chemin implements Serializable, TreeModel {
         } else {
             return 0;
         }
+    }
+
+    /**
+     * Permet de récupérer uniquement le nom du chemin et non la référence de l'objet quand on appelle la fonction toString()
+     *
+     * @return String
+     */
+    @Override
+    public String toString(){
+        return getName();
     }
 
     @Override

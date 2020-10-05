@@ -1,6 +1,8 @@
 package Vue;
 
 import Modele.Chemin;
+import Modele.Repertoire;
+
 import javax.swing.*;
 
 /**
@@ -16,5 +18,9 @@ public class View extends JFrame{
         setLocation(200,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible( true );
+    }
+
+    public void addJTree(Repertoire racine){
+        add(new JTree(racine));
     }
 }
