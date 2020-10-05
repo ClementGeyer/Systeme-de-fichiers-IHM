@@ -1,6 +1,6 @@
-import Vue.*;
-import Controller.*;
-import Modele.*;
+import vue.*;
+import controller.*;
+import modele.*;
 
 /**
  * Cette classe sert à tester toutes les fonctionnalités proposées par ce système de fichiers

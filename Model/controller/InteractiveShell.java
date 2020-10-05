@@ -1,10 +1,8 @@
-package Controller;
+package controller;
 
 import java.io.Console;
 import java.util.List;
 
-import Modele.Chemin;
-import Vue.View;
 import jdk.jshell.JShell;
 import jdk.jshell.SnippetEvent;
 

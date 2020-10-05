@@ -1,7 +1,7 @@
-package Vue;
+package vue;
 
-import Modele.Chemin;
-import Modele.Repertoire;
+import modele.Chemin;
+import modele.Repertoire;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;

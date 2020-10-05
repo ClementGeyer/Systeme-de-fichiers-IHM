@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 /**
  * Cette classe est une classe fille de la classe Modele.Chemin, elle permet de définir un Modele.Chemin en tant que Modele.Fichier

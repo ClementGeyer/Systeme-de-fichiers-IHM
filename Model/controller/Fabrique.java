@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Modele.*;
+import modele.*;
 
 /**
  * Cette classe permet de créer des chemins (fichiers ou répertoires),

@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Modele.*;
+import modele.*;
 
 /**
  * Cette classe permet d'effectuer des fonctions disponibles dans un terminal unix sur les objets du système de fichier
